@@ -1,0 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #0a0a0a;
+    color: #f5f0e8;
+  }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #0a0a0a;
+    color: #f5f0e8;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Syne', sans-serif;
+  }
+}
+
+@layer utilities {
+  /* NeoPOP button shadow */
+  .neopop-shadow {
+    position: relative;
+  }
+  .neopop-shadow::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 100%;
+    height: 100%;
+    background: #8a6a1f;
+    z-index: -1;
+    transition: bottom 0.15s, right 0.15s;
+  }
+  .neopop-shadow:hover {
+    transform: translate(-3px, -3px);
+  }
+  .neopop-shadow:hover::after {
+    bottom: -8px;
+    right: -8px;
+  }
+
+  /* NeoPOP card shadow */
+  .neopop-card {
+    position: relative;
+  }
+  .neopop-card::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: -6px;
+    width: 100%;
+    height: 100%;
+    background: #1a1a1a;
+    border: 1px solid #252525;
+    z-index: -1;
+    transition: bottom 0.15s, right 0.15s;
+  }
+  .neopop-card:hover {
+    transform: translate(-3px, -3px);
+  }
+  .neopop-card:hover::after {
+    bottom: -9px;
+    right: -9px;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Gold gradient text */
+  .gold-text {
+    background: linear-gradient(135deg, #c9a84c, #f0c96b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Score bar fill animation */
+  .score-fill {
+    height: 100%;
+    background: linear-gradient(to right, #c9a84c, #f0c96b);
+    transition: width 1.5s ease;
+  }
+}
+
+/* Scroll progress bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: #c9a84c;
+  z-index: 9999;
+  transition: width 0.1s;
+}
+
+/* Testimonial infinite scroll */
+.testimonial-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: scrollX 30s linear infinite;
+}
+.testimonial-track:hover {
+  animation-play-state: paused;
+}
+.testimonial-wrapper {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+@keyframes scrollX {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Loader */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.loader-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
